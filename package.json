@@ -22,6 +22,7 @@
     "react-native-reanimated": "^1.7.0",
     "react-native-safe-area-context": "^0.6.2",
     "react-native-screens": "^2.0.0-alpha.32",
+    "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.1.0",
     "react-navigation-stack": "^2.0.16",
     "react-redux": "^7.1.3",

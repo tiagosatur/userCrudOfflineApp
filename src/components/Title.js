@@ -3,7 +3,8 @@ import styled from 'styled-components'
 
 const Title = styled.Text`
   font-size: 22px;
-  margin-bottom: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
 `;
 
 export default Title;

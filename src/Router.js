@@ -8,10 +8,13 @@ import {
 const AppNavigator = createStackNavigator({
     Home: {
         screen: (props) => <Home {...props} />,
-        headerShown: false
+        // navigationOptions: { header: null }
     },
-}, {
-    initialRouteName: 'Home'
+    
+},
+{
+    initialRouteName: 'Home',
+    headerMode: 'none',
 });
 
 export default createAppContainer(AppNavigator);

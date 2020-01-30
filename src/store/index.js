@@ -9,15 +9,8 @@ import thunk from 'redux-thunk';
 import combinedReducers from './combinedReducers';
 
 import {
-  POST_REGISTER_SAVED,
-  GET_POSTS_PENDING,
-  POST_REGISTER_SYNCED,
-  DELETE_POST_OFFLINE_PENDING,
-  DELETE_POST_PENDING,
-  getPosts,
-  //deletePostOffline,
-  //deletePopOfflineSuccess,
-} from './post';
+  GET_USERS_PENDING,
+} from './user';
 
 
 const offlineApiMiddleware = res => {
@@ -26,17 +19,21 @@ const offlineApiMiddleware = res => {
 };
 
 const request = async (url, method, body) => {
-  if (body) {
-    console.log('REQUEST', JSON.parse(body));
-  }
+  // if (body) {
+  //   console.log('REQUEST', JSON.parse(body));
+  // }
+
 
   const response = await axios({
     method,
     url,
+    headers: { "Content-type": "application/json; charset=UTF-8" },
     data: body,
   });
 
-  if (response.status === 200) {
+  console.log('RESPONSE', response);
+
+  if (response.status >= 200 && response.status <= 299) {
     return offlineApiMiddleware(response);
   } else {
     return Promise.reject(response);
@@ -47,7 +44,9 @@ const offlineConfig = {
   ...defaultOfflineConfig,
 
   effect: async ({ url, method, body = null, ...options }) => {
+    
     const req = await request(url, method, body);
+    console.log('effetct req', req);
     return req;
   },
 
@@ -67,7 +66,7 @@ const offlineConfig = {
       // https://github.com/redux-offline/redux-offline/issues/238
 
       //Removes duplicated dispatched actions
-      if (incomingAction.type === GET_POSTS_PENDING) {
+      if (incomingAction.type === GET_USERS_PENDING) {
         return outbox
           .filter(outboxAction => outboxAction.type !== incomingAction.type)
           .concat(incomingAction);
@@ -96,7 +95,7 @@ const offlineConfig = {
         get: offline,
         set: () => {
           
-          if(!isOnline && incomingAction.type === DELETE_POST_PENDING) {
+          if(!isOnline && incomingAction.type === DELETE_USER_PENDING) {
             const id = incomingAction.payload.id;
             // const dispatch = store.dispatch;
             deletePopOffline({id, dispatch})
@@ -104,7 +103,7 @@ const offlineConfig = {
             return outbox.filter( outboxAction => {
                 return outboxAction.payload.id !== incomingAction.payload.id 
             })
-            .filter(deleteAction => deleteAction.type === DELETE_POST_PENDING)
+            .filter(deleteAction => deleteAction.type === DELETE_USER_PENDING)
           }
           return state;
         }

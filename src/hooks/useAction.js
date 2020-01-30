@@ -2,12 +2,12 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
-  getPosts, 
-  registerPost,
-  updatePost,
-  clearAllPosts,
-  deletePost,
-} from '../store/post';
+  getUsers, 
+  registerUser,
+  updateUser,
+  clearAllUsers,
+  deleteUser,
+} from '../store/user';
 
 
 const useAction = () => {
@@ -15,20 +15,20 @@ const useAction = () => {
   const makeAction = action =>
     useCallback(data => dispatch(action(data)), [dispatch]);
 
-  const registerPostAction = makeAction(registerPost);
-  const updatePostAction = makeAction(updatePost);
-  const getPostsAction = makeAction(getPosts);
-  const deletePostAction = makeAction(deletePost);
+  const registerUserAction = makeAction(registerUser);
+  const updateUserAction = makeAction(updateUser);
+  const getUsersAction = makeAction(getUsers);
+  const deleteUserAction = makeAction(deleteUser);
 
-  const clearAllPopsAction = makeAction(clearAllPosts);
+  const clearAllPopsAction = makeAction(clearAllUsers);
   
 
 
   return {
-    getPostsAction,
-    registerPostAction,
-    updatePostAction,
-    deletePostAction,
+    getUsersAction,
+    registerUserAction,
+    updateUserAction,
+    deleteUserAction,
   };
 };
 

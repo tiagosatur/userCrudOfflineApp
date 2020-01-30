@@ -7,7 +7,7 @@ const Touchable = styled.TouchableOpacity`
   border-radius: 3px;
   color: white;
   margin-bottom: 12px;
-  padding: 8px;
+  padding: 12px;
 `;
 
 const Text = styled.Text`
@@ -15,9 +15,9 @@ const Text = styled.Text`
   text-align: center;
 `;
 
-const Button = ({ label }) => {
+const Button = ({ label, ...rest }) => {
   return (
-    <Touchable>
+    <Touchable {...rest}>
       <Text>{ label }</Text>
     </Touchable>
   )

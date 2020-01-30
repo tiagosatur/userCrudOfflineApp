@@ -17,17 +17,14 @@ const Form = ({
   return (
     <Container>
       <TextInput 
-          value={values.name} 
-          onChangeText={text => handleInputChange('name', text)} 
-          placeholder="Tittle"
+          value={values.first_name} 
+          onChangeText={text => handleInputChange('first_name', text)} 
+          placeholder="Name"
       />
       <TextInput 
-          value={values.address} 
-          onChangeText={text => handleInputChange('address', text)} 
-          placeholder="Text"
-          multiline={true}
-          numberOfLines={5}
-
+          value={values.email} 
+          onChangeText={text => handleInputChange('email', text)} 
+          placeholder="E-mail"
       />
       <Button onPress={handlePress} label='Register' />
     </Container>

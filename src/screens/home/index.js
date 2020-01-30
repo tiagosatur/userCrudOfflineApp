@@ -1,37 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import styled from 'styled-components'
 import { useAction } from '../../hooks';
 import { 
     Container, 
     List,
   } from '../../components'
-import { NewPost } from '../../screens';
+import { NewUser } from '../../screens';
 
 const Home = ({ children }) => {
     const {
-        postReducer: {
-            posts
+        userReducer: {
+            users
         }
     } = useSelector(state => state);
-    const { getPostsAction } = useAction();
+    const { getUsersAction } = useAction();
 
     useEffect(() => {
-        const posts = getPostsAction()
-        console.log('posts', posts);
+        const users = getUsersAction()
     }, [])
 
     return (
-        <Container style={{ paddingTop: 10 }}>
-            <NewPost />
-        <List data={posts} />
-               
-      </Container>
+        <ScrollView contentContainerStyle={{ flexGrow: 1}} keyboardShouldPersistTaps='handled'>
+            <Container>
+            <NewUser />
+            <List data={users} />
+            </Container>
+        </ScrollView>
     );
     
 }
 
-Home.navigationOptions = {
-    headerShown: false,
-};
+const ScrollView = styled.ScrollView``;
+
+
 
 export default Home;
