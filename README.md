@@ -6,6 +6,9 @@ It's an offline-first app where you can perform offline actions and it will sync
 **Purpose**
 This project was created to demonstrate an advanced use of [redux-offline](https://github.com/redux-offline/redux-offline) library.
 
+## Screen
+![Application screenshot](https://ibb.co/8gK0D83)
+
 ## Getting Started
 
 1. Installation
