@@ -19,11 +19,6 @@ const offlineApiMiddleware = res => {
 };
 
 const request = async (url, method, body) => {
-  // if (body) {
-  //   console.log('REQUEST', JSON.parse(body));
-  // }
-
-
   const response = await axios({
     method,
     url,
@@ -44,9 +39,7 @@ const offlineConfig = {
   ...defaultOfflineConfig,
 
   effect: async ({ url, method, body = null, ...options }) => {
-    
     const req = await request(url, method, body);
-    console.log('effetct req', req);
     return req;
   },
 
@@ -72,15 +65,14 @@ const offlineConfig = {
           .concat(incomingAction);
       }
       /*
-          if(!isOnline && incomingAction.type === DELETE_POP_PENDING) {
+          if(!isOnline && incomingAction.type === DELETE_USER_PENDING) {
             const id = incomingAction.payload.id;
             // const dispatch = store.dispatch;
-            deletePopOffline({ id })
 
             return outbox.filter( outboxAction => {
                 return outboxAction.payload.id !== incomingAction.payload.id 
             })
-            .filter(deleteAction => deleteAction.type === DELETE_POP_PENDING)
+            .filter(deleteAction => deleteAction.type === DELETE_USER_PENDING)
           }
           */
 
@@ -98,7 +90,6 @@ const offlineConfig = {
           if(!isOnline && incomingAction.type === DELETE_USER_PENDING) {
             const id = incomingAction.payload.id;
             // const dispatch = store.dispatch;
-            deletePopOffline({id, dispatch})
 
             return outbox.filter( outboxAction => {
                 return outboxAction.payload.id !== incomingAction.payload.id 

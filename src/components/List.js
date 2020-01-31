@@ -1,10 +1,16 @@
 import React from 'react';
 import styled from 'styled-components'
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { uniqueId } from '../utils'
 import { Container } from '../components'
 
 
-const List = ({ data }) => {
+const List = ({ 
+  data,
+  actions: {
+    handleDelete
+  }
+}) => {
   return (
     <Container>
       <ListTitle>User list</ListTitle>
@@ -20,9 +26,28 @@ const List = ({ data }) => {
               <Name>{user.register.id} {user.register.first_name}</Name>
               <Text>{user.register.email}</Text>
             </Info>
-            <DeleteButton>
-              <Text> Delete</Text>
+            <DeleteButton 
+              underlayColor="#ffffff00"
+            >
+              {
+                user.synced
+                ? <Icon name="cloud" size={25} color="#ccc" />
+                : <Icon name="cloud-upload" size={25} color="#ccc" />
+              }
             </DeleteButton>
+
+            <DeleteButton 
+              onPress={() => handleDelete(user.register.id)}
+              underlayColor="#ffffff00"
+            >
+              {
+                user.isLoading
+                ? <ActivityIndicator size="small" color="#333" />
+                : <Icon name="trash" size={25} color="#ccc" />
+              }
+            </DeleteButton>
+                
+            
           </Item>
         ))}
       </ListContainer>
@@ -67,8 +92,16 @@ const Info = styled.View`
   flex-grow: 1;
   padding-left: 12px;
 `;
+const SyncedButton = styled.TouchableHighlight`
+  border-radius: 3px;
+  padding: 8px 18px;
+`;
 
 const DeleteButton = styled.TouchableHighlight`
-  color: red;
+  border-radius: 3px;
+  padding: 8px 18px;
 `;
+
+const ActivityIndicator = styled.ActivityIndicator``;
+
 export default List;

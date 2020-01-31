@@ -20,15 +20,14 @@ const useAction = () => {
   const getUsersAction = makeAction(getUsers);
   const deleteUserAction = makeAction(deleteUser);
 
-  const clearAllPopsAction = makeAction(clearAllUsers);
+  const clearAllUserssAction = makeAction(clearAllUsers);
   
-
-
   return {
     getUsersAction,
     registerUserAction,
     updateUserAction,
     deleteUserAction,
+    clearAllUserssAction,
   };
 };
 
