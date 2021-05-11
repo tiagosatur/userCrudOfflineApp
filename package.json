@@ -15,7 +15,7 @@
     "@react-native-community/netinfo": "^5.3.3",
     "@redux-offline/redux-offline": "^2.5.2-native.3",
     "axios": "^0.19.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-gesture-handler": "^1.5.3",
